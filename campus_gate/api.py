@@ -45,5 +45,7 @@ def check_banned_visitors(doc, method):
     """
     Hook to check if the visitor is banned during validation of Visitor Log.
     """
+    if doc.visitor_name:
+        doc.visitor_name = doc.visitor_name.title()
     if doc.visitor_name.lower() == "voldemort" and doc.purpose.lower() == "dark magic":
         frappe.throw("This visitor is banned from entering the campus.")
